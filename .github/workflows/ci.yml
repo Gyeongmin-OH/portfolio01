@@ -22,6 +22,21 @@ jobs:
       - name: Gradle 권한 설정
         run: chmod +x gradlew
 
+      - name: application.properties 생성
+        run: |
+            cat > src/main/resources/application.properties << EOF
+            spring.application.name=portfolio
+            spring.datasource.url=jdbc:h2:mem:testdb
+            spring.datasource.driver-class-name=org.h2.Driver
+            spring.datasource.username=sa
+            spring.datasource.password=
+            spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+            spring.jpa.hibernate.ddl-auto=create-drop
+            spring.h2.console.enabled=true
+            jwt.secret=${{ secrets.JWT_SECRET }}
+            ai.mock=${{ secrets.AI_MOCK }}
+            EOF
+
       - name: 빌드 및 테스트
         run: ./gradlew build
 
