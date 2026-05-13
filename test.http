@@ -19,16 +19,24 @@ Content-Type: application/json
 ### 바이탈 입력
 POST http://localhost:8080/api/vitals
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzc4Njc4OTE0LCJleHAiOjE3Nzg3NjUzMTR9.TqA21rn2-HO9Z9esmQpoU9LLXPQny4NuyE1gU1SQgOs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzc4Njc5OTA1LCJleHAiOjE3Nzg3NjYzMDV9.dw38ovju7l9f0xNrLjBOH3HQ99rnJHOgIMxO2pm0zb8
 
 {
-  "systolicBp": 125,
-  "diastolicBp": 82,
-  "heartRate": 95,
-  "bodyTemperature": 37.8,
-  "spO2": 96
+  "systolicBp": 110,
+  "diastolicBp": 80,
+  "heartRate": 90,
+  "bodyTemperature": 36.8,
+  "spO2": 95
 }
 
 ### 측정 이력 조회
 GET http://localhost:8080/api/vitals
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzc4Njc4OTE0LCJleHAiOjE3Nzg3NjUzMTR9.TqA21rn2-HO9Z9esmQpoU9LLXPQny4NuyE1gU1SQgOs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzc4Njc5OTA1LCJleHAiOjE3Nzg3NjYzMDV9.dw38ovju7l9f0xNrLjBOH3HQ99rnJHOgIMxO2pm0zb8
+
+### AI 분석
+GET http://localhost:8080/api/ai/analyze/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzc4Njc5OTA1LCJleHAiOjE3Nzg3NjYzMDV9.dw38ovju7l9f0xNrLjBOH3HQ99rnJHOgIMxO2pm0zb8
+
+### 통계 조회
+GET http://localhost:8080/api/vitals/statistics
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzc4Njc5OTA1LCJleHAiOjE3Nzg3NjYzMDV9.dw38ovju7l9f0xNrLjBOH3HQ99rnJHOgIMxO2pm0zb8

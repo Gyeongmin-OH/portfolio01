@@ -68,4 +68,33 @@ public class VitalService {
 
         vitalRepository.delete(record);
     }
+    // 통계 조회
+    public VitalStatisticsResponse getStatistics(String email) {
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+
+        long totalCount = vitalRepository.countByMember(member);
+
+        if (totalCount == 0) {
+            throw new IllegalArgumentException("측정 이력이 없습니다.");
+        }
+
+        return new VitalStatisticsResponse(
+                round(vitalRepository.avgSystolicBp(member)),
+                round(vitalRepository.avgDiastolicBp(member)),
+                round(vitalRepository.avgHeartRate(member)),
+                round(vitalRepository.avgBodyTemperature(member)),
+                round(vitalRepository.avgSpO2(member)),
+                vitalRepository.countByMemberAndStatus(member, VitalStatus.NORMAL),
+                vitalRepository.countByMemberAndStatus(member, VitalStatus.CAUTION),
+                vitalRepository.countByMemberAndStatus(member, VitalStatus.DANGER),
+                totalCount
+        );
+    }
+
+    // 소수점 둘째자리 반올림
+    private double round(Double value) {
+        if (value == null) return 0.0;
+        return Math.round(value * 100.0) / 100.0;
+    }
 }

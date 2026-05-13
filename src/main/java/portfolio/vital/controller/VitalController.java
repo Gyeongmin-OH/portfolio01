@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import portfolio.vital.domain.VitalRequest;
 import portfolio.vital.domain.VitalResponse;
 import portfolio.vital.service.VitalService;
+import portfolio.vital.domain.VitalStatisticsResponse;
 
 import java.util.List;
 
@@ -41,5 +42,12 @@ public class VitalController {
         String email = authentication.getName();
         vitalService.delete(id, email);
         return ResponseEntity.ok("측정값이 삭제되었습니다.");
+    }
+    // 통계 조회
+    @GetMapping("/statistics")
+    public ResponseEntity<VitalStatisticsResponse> getStatistics(Authentication authentication) {
+        String email = authentication.getName();
+        VitalStatisticsResponse response = vitalService.getStatistics(email);
+        return ResponseEntity.ok(response);
     }
 }
