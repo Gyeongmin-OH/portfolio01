@@ -29,11 +29,15 @@ public class Member {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private int age;
+
     @Builder
-    public Member(String email, String password, String name) {
+    public Member(String email, String password, String name, int age) {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.age = age;
         this.createdAt = LocalDateTime.now();
     }
 }

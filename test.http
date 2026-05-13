@@ -16,3 +16,19 @@ Content-Type: application/json
   "email": "test@test.com",
   "password": "test1234"
 }
+### 바이탈 입력
+POST http://localhost:8080/api/vitals
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzc4Njc4OTE0LCJleHAiOjE3Nzg3NjUzMTR9.TqA21rn2-HO9Z9esmQpoU9LLXPQny4NuyE1gU1SQgOs
+
+{
+  "systolicBp": 125,
+  "diastolicBp": 82,
+  "heartRate": 95,
+  "bodyTemperature": 37.8,
+  "spO2": 96
+}
+
+### 측정 이력 조회
+GET http://localhost:8080/api/vitals
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzc4Njc4OTE0LCJleHAiOjE3Nzg3NjUzMTR9.TqA21rn2-HO9Z9esmQpoU9LLXPQny4NuyE1gU1SQgOs
